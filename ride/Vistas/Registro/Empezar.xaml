@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ride.Vistas.Registro.Empezar">
+    <Grid BackgroundColor="#276EF1">
+        <StackLayout>
+            <StackLayout VerticalOptions="CenterAndExpand">
+                <Label Text="ride"
+                   TextColor="White"
+                   HorizontalOptions="Center"
+                   FontSize="40" />
+                <Image Source="https://ibb.co/s1pCdMM" />
+                <Label Text="Viaja con seguridad"
+                   TextColor="White"
+                   HorizontalOptions="Center"
+                   FontSize="35"
+                   HorizontalTextAlignment="Center"/>
+            </StackLayout>
+
+            <Grid VerticalOptions="EndAndExpand"
+                  Margin="20">
+                <Button Text="Empezar"
+                        BackgroundColor="Black"
+                        TextColor="White"
+                        TextTransform="None"
+                        FontAttributes="Bold"
+                        CornerRadius="10"
+                        Command="{Binding IrcrearcuentaCommand}"/>
+                <Image Source="https://ibb.co/2Wc8Chs"
+                       HeightRequest="30"
+                       HorizontalOptions="End"
+                       Margin="0,0,18,0" />
+            </Grid>
+        </StackLayout>
+    </Grid>
+</ContentPage>

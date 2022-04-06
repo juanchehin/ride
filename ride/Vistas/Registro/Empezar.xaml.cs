@@ -1,16 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Xamarin.Forms;
 
-namespace ride
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
+
+namespace ride.Vistas.Registro
 {
-    public partial class MainPage : ContentPage
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class Empezar : ContentPage
     {
-        public MainPage()
+        public Empezar()
         {
             InitializeComponent();
         }

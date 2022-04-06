@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ride.Vistas.Registro;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,7 +11,7 @@ namespace ride
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new Empezar();
         }
 
         protected override void OnStart()

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace SplashImagen.Droid
+namespace ride.Droid
 {
     [Activity(Label = "ride", Icon = "@mipmap/logo",
         Theme = "@style/nuevotema",
