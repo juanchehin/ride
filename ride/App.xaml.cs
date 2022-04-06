@@ -11,7 +11,7 @@ namespace ride
         {
             InitializeComponent();
 
-            MainPage = new Empezar();
+            MainPage = new CrearCuenta();
         }
 
         protected override void OnStart()
