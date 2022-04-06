@@ -12,7 +12,7 @@ using System.Text;
 
 namespace SplashImagen.Droid
 {
-    [Activity(Label = "ride", Icon = "@mipmap/icon",
+    [Activity(Label = "ride", Icon = "@mipmap/logo",
         Theme = "@style/nuevotema",
         MainLauncher = true,
         ConfigurationChanges = ConfigChanges.ScreenSize)]
@@ -21,7 +21,7 @@ namespace SplashImagen.Droid
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            StartActivity(new Intent(Application.Context, typeof(MainActivity)));
+            StartActivity(new Intent(Application.Context, typeof(SplashScreen)));
             // Create your application here
         }
     }
