@@ -11,7 +11,7 @@ namespace ride
         {
             InitializeComponent();
 
-            MainPage = new CompletarRegistro();
+            MainPage = new DigitarCodigo();
         }
 
         protected override void OnStart()
