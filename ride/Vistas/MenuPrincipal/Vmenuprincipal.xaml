@@ -1,12 +1,93 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ride.Vistas.MenuPrincipal.Vmenuprincipal">
+             x:Class="ride.Vistas.MenuPrincipal.Vmenuprincipal"
+             xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout Padding="20"
+                 BackgroundColor="White"
+                 Spacing="18">
+            <Image Source="https://i.ibb.co/tcSDQ96/man.png"
+               HorizontalOptions="End"
+               HeightRequest="20" />
+
+            <Frame Padding="0"
+               CornerRadius="10"
+               HasShadow="False"
+               BackgroundColor="#E3DDF2">
+                <Grid ColumnDefinitions="auto,auto">
+                    <StackLayout VerticalOptions="Center"
+                             Padding="30">
+                        <Label Text="¿Listo? ¡Vamos a ello!"
+                           TextColor="Black"
+                           FontSize="Medium"
+                           FontAttributes="Bold" />
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Viajar con Uber"
+                               TextColor="Black"
+                               FontSize="Body" />
+                            <Image Source="https://i.ibb.co/cD2Y2N9/flecha-correcta.png"
+                               HeightRequest="30" />
+                        </StackLayout>
+                    </StackLayout>
+                    <Image Grid.Column="1"
+                       Source="https://blogapi.uber.com/wp-content/uploads/2018/12/UberIM_009255-medium-1024x684.jpg"
+                       Aspect="AspectFill" />
+                </Grid>
+            </Frame>
+
+            <Frame BackgroundColor="#EDEDED"
+               CornerRadius="10"
+               HasShadow="False"
+               Padding="15,10">
+                <Label Text="¿A dónde vamos?"
+                   FontSize="Large"
+                   TextColor="Black" />
+            </Frame>
+            <StackLayout Orientation="Horizontal">
+                <Frame BackgroundColor="#EEEEEE"
+                   VerticalOptions="Center"
+                   CornerRadius="30"
+                   Padding="10">
+                    <Image Source="https://i.ibb.co/V3QM746/estrella-1.png"
+                       HeightRequest="15" />
+                </Frame>
+                <Label Text="Elegir un favorito"
+                   VerticalOptions="Center"
+                   FontSize="Subtitle"
+                   TextColor="Black"
+                   FontAttributes="Bold" />
+                <Image Source="https://i.ibb.co/Czn5Jn3/mover-al-siguiente.png"
+                   HeightRequest="20"
+                   HorizontalOptions="EndAndExpand" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Frame BackgroundColor="#EEEEEE"
+                   VerticalOptions="Center"
+                   CornerRadius="30"
+                   Padding="10">
+                    <Image Source="https://i.ibb.co/y5jL3G1/alfiler-1.png"
+                       HeightRequest="15" />
+                </Frame>
+                <Label Text="Establecer destino en el mapa"
+                   VerticalOptions="Center"
+                   FontSize="Subtitle"
+                   TextColor="Black"
+                   FontAttributes="Bold" />
+                <Image Source="https://i.ibb.co/Czn5Jn3/mover-al-siguiente.png"
+                   HeightRequest="20"
+                   HorizontalOptions="EndAndExpand" />
+            </StackLayout>
+            <Label Text="A tu alrededor"
+               FontSize="Medium"
+               TextColor="Black" />
+            <Frame VerticalOptions="FillAndExpand"
+               CornerRadius="20"
+               Padding="0"
+               HasShadow="False"
+               >
+                <maps:Map IsShowingUser="True"/>
+            </Frame>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
