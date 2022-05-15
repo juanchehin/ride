@@ -1,4 +1,5 @@
-﻿using ride.Vistas.Registro;
+﻿using ride.Vistas.MenuPrincipal;
+using ride.Vistas.Registro;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -11,7 +12,7 @@ namespace ride
         {
             InitializeComponent();
 
-            MainPage = new DigitarCodigo();
+            MainPage = new Vmenuprincipal();
         }
 
         protected override void OnStart()
