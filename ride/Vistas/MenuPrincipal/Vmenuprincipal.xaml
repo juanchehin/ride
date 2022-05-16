@@ -1,8 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ride.Vistas.MenuPrincipal.Vmenuprincipal"
-             xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps">
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:maps1="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
+             x:Class="ride.Vistas.MenuPrincipal.Vmenuprincipal">
     <ContentPage.Content>
         <StackLayout Padding="20"
                  BackgroundColor="White"
@@ -86,7 +85,7 @@
                Padding="0"
                HasShadow="False"
                >
-                <maps:Map IsShowingUser="True"/>
+                <maps1:Map IsShowingUser="True"/>
             </Frame>
         </StackLayout>
     </ContentPage.Content>

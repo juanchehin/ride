@@ -18,17 +18,17 @@ using System;
 [MetaData("com.google.android.maps.v2.API_KEY",
     Value = Constantes.GoogleMapsApiKey)]
 
-public class Googlemapsapi:Application
+public class Googlemapsapi : Application
+{
+    public Googlemapsapi(IntPtr handle, JniHandleOwnership transer)
+       : base(handle, transer)
     {
-    public Googlemapsapi(IntPtr handle,JniHandleOwnership transer)
-       : base(handle,transer)
-        {
-
-        }
-    public override void OnCreate()
-        {
-        base.OnCreate();
-        CrossCurrentActivity.Current.Init(this);
-        }
 
     }
+    public override void OnCreate()
+    {
+        base.OnCreate();
+        CrossCurrentActivity.Current.Init(this);
+    }
+
+}
