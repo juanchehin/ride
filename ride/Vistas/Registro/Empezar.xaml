@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ride.Vistas.Registro.Empezar">
+             x:Class="ride.Vistas.Registro.Empezar"
+             NavigationPage.HasNavigationBar="false"> 
     <Grid BackgroundColor="#276EF1">
         <StackLayout>
             <StackLayout VerticalOptions="CenterAndExpand">

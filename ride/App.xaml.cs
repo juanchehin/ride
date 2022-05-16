@@ -12,7 +12,7 @@ namespace ride
         {
             InitializeComponent();
 
-            MainPage = new Vmenuprincipal();
+            MainPage = new NavigationPage(new Empezar()); 
         }
 
         protected override void OnStart()
