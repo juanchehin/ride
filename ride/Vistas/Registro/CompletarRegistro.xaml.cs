@@ -11,8 +11,7 @@ namespace ride.Vistas.Registro
             public CompletarRegistro(GoogleUser parametros)
             {
                 InitializeComponent();
-            BindingContext = new VMcrearcuenta(Navigation);
-            // BindingContext = new VMcrearcuenta(Navigation, parametros);
+                BindingContext = new VMcompletarreg(Navigation, parametros);
         }
     }
 }
