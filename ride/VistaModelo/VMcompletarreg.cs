@@ -2,6 +2,9 @@
 using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Twilio;
+using Twilio.Rest.Api.V2010.Account;
+using Twilio.Types;
 using Xamarin.Forms;
 
 namespace ride.VistaModelo
@@ -27,8 +30,25 @@ namespace ride.VistaModelo
         }
         #endregion
         #region PROCESOS
-        public async Task ProcesoAsyncrono()
+        public async void Enviarsms()
         {
+            try
+            {
+                var accountSid = "id";
+                var authToken = "[AuthToken]";
+                TwilioClient.Init(accountSid, authToken);
+
+                var messageOptions = new CreateMessageOptions(new PhoneNumber("NumDestino"));
+                messageOptions.MessagingServiceSid = "serviceID";
+                messageOptions.Body = "Hola, este es un mensaje desde el service-chehin";
+
+                var message = MessageResource.Create(messageOptions);
+                Console.WriteLine(message.Body);
+            }
+            catch (Exception ex)
+            {
+                // await DisplayAlert("Alerta", ex.Message); 
+            }
 
         }
         public void ProcesoSimple()
@@ -37,7 +57,7 @@ namespace ride.VistaModelo
         }
         #endregion
         #region COMANDOS
-        public ICommand ProcesoAsyncommand => new Command(async () => await ProcesoAsyncrono());
+        public ICommand Siguientecommand => new Command(Enviarsms);
         public ICommand ProcesoSimpcommand => new Command(ProcesoSimple);
         #endregion
     }

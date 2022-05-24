@@ -79,6 +79,9 @@
                            HeightRequest="30"
                            HorizontalOptions="End"
                            Margin="0,0,10,0" />
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Siguientecommand}"></TapGestureRecognizer>
+                    </StackLayout.GestureRecognizers>
                 </StackLayout>
             </Frame>
         </StackLayout>
