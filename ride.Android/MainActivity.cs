@@ -4,6 +4,7 @@ using Android.Runtime;
 using Android.OS;
 using Android.Gms.Auth.Api.SignIn;
 using Plugin.CurrentActivity;
+using Android.Gms.Auth.Api;
 
 namespace ride.Droid
 {

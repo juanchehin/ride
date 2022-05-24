@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ride.VistaModelo;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,7 @@ namespace ride.Vistas.Registro
         public CrearCuenta()
         {
             InitializeComponent();
+            BindingContext = new VMcrearcuenta(Navigation);
         }
     }
 }
