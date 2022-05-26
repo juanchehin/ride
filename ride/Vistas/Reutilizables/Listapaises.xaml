@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ride.Vistas.Reutilizables.Listapaises">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="BoxView"
+                   x:Key="SeparadorBoxView">
+                <Setter Property="HeightRequest"
+                        Value="2" />
+                <Setter Property="BackgroundColor"
+                        Value="#979797" />
+                <Setter Property="Opacity"
+                        Value="0.1" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Grid Margin="0,200,0,0">
+        <BoxView BackgroundColor="White"
+                 CornerRadius="15,15,20,0"/>
+        <StackLayout Padding="16">
+            <StackLayout Orientation="Horizontal">
+                <Button Text="Cancelar"
+                        BackgroundColor="Transparent"/>
+                <Label Text="Selecciona tu pais"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       VerticalTextAlignment="Center"
+                       HorizontalOptions="CenterAndExpand"/>
+                <Button Text="Confirmar"
+                        BackgroundColor="Transparent"/>
+                <BoxView Style="{StaticResource SeparadorBoxView}"/>
+                <Frame Padding="5"
+                       CornerRadius="8"
+                       HasShadow="False"
+                       BorderColor="Silver">
+                    <SearchBar Placeholder="Busca tu pais..."
+                               PlaceholderColor="Silver"
+                               BackgroundColor="White"/>
+                </Frame>
+                <Label Text="Seleccionado"
+                       FontSize="14"
+                       Margin="0,0,0,10"/>
+                <Frame CornerRadius="10"
+                       HasShadow="False">
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Argentina"
+                               FontAttributes="Bold"
+                               TextColor="White"/>
+                    </StackLayout>
+                    <Frame.Background>
+                        <LinearGradientBrush>
+                            <GradientStop Color="#ff746c"
+                                          Offset="0.5"/>
+                             <GradientStop Color="#ff9068"
+                                          Offset="1.0"/>
+                        </LinearGradientBrush>
+                    </Frame.Background>
+                </Frame>
+                <BoxView Style="{StaticResource SeparadorBoxView}" />
+                <Label Text="Paises"
+                       FontSize="14" />
+                <CollectionView>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+        </StackLayout>
+    </Grid>
+</ContentPage>
