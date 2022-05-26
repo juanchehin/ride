@@ -50,7 +50,9 @@
                     <Entry BackgroundColor="#EEEEEE"
                            Placeholder="Numero de móvil"
                            HorizontalOptions="FillAndExpand"
-                           Keyboard="Telephone"></Entry>
+                           Keyboard="Telephone"
+                           Text="{Binding Txtnumero}"
+                           ></Entry>
                 </StackLayout>
             </Frame>
         </StackLayout>

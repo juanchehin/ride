@@ -1,4 +1,5 @@
 ﻿using ride.Modelo;
+using ride.Vistas.Registro;
 using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -12,7 +13,7 @@ namespace ride.VistaModelo
     internal class VMcompletarreg: BaseViewModel
     {
         #region VARIABLES
-        string _Texto;
+        string _txtnumero;
         public GoogleUser _googleuserRecibe { get; set; }
         #endregion
         #region CONSTRUCTOR
@@ -23,10 +24,10 @@ namespace ride.VistaModelo
         }
         #endregion
         #region OBJETOS
-        public string Texto
+        public string Txtnumero
         {
-            get { return _Texto; }
-            // set { SetValue(ref _Texto, value); }
+            get { return _txtnumero; }
+            set { SetValue(ref _txtnumero, value); }
         }
         #endregion
         #region PROCESOS
@@ -34,15 +35,21 @@ namespace ride.VistaModelo
         {
             try
             {
-                var accountSid = "id";
-                var authToken = "[AuthToken]";
+                #region Generar codigo aleatorio
+                Random generador = new Random();
+                String randomsms = generador.Next(0,9999).ToString("D4");
+
+                #endregion
+                var accountSid = "ACe031aa5545b40dba5952caa476bf7e45";
+                var authToken = "AuthToken";
                 TwilioClient.Init(accountSid, authToken);
 
-                var messageOptions = new CreateMessageOptions(new PhoneNumber("NumDestino"));
-                messageOptions.MessagingServiceSid = "serviceID";
-                messageOptions.Body = "Hola, este es un mensaje desde el service-chehin";
+                var messageOptions = new CreateMessageOptions(new PhoneNumber(Txtnumero));
+                messageOptions.MessagingServiceSid = "";
+                messageOptions.Body = "Hola, usa este codigo para validar tu codigo en ride" + randomsms;
 
                 var message = MessageResource.Create(messageOptions);
+                await Navigation.PushAsync(new DigitarCodigo(randomsms));
                 Console.WriteLine(message.Body);
             }
             catch (Exception ex)
