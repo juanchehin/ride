@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using ride.Modelo;
+using ride.VistaModelo;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -14,7 +10,12 @@ namespace ride.Vistas.Reutilizables
     {
         public Listapaises()
         {
+            var parametros = new GoogleUser();
+            parametros.Apellido = "-";
+            parametros.Name = "-";
+            parametros.Email = "-";
             InitializeComponent();
+            BindingContext = new VMcompletarreg(Navigation,parametros);
         }
     }
 }

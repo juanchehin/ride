@@ -1,5 +1,6 @@
 ﻿using ride.Vistas.MenuPrincipal;
 using ride.Vistas.Registro;
+using ride.Vistas.Reutilizables;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -12,7 +13,7 @@ namespace ride
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new Empezar()); 
+            MainPage = new NavigationPage(new Listapaises()); 
         }
 
         protected override void OnStart()

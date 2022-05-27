@@ -1,6 +1,8 @@
-﻿using ride.Modelo;
+﻿using ride.Datos;
+using ride.Modelo;
 using ride.Vistas.Registro;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Twilio;
@@ -14,6 +16,7 @@ namespace ride.VistaModelo
     {
         #region VARIABLES
         string _txtnumero;
+        List<Mpaises> _listapaises;
         public GoogleUser _googleuserRecibe { get; set; }
         #endregion
         #region CONSTRUCTOR
@@ -21,6 +24,7 @@ namespace ride.VistaModelo
         {
             Navigation = navigation;
             _googleuserRecibe = _googleUserTrae;
+            Mostrarpaises();
         }
         #endregion
         #region OBJETOS
@@ -28,6 +32,11 @@ namespace ride.VistaModelo
         {
             get { return _txtnumero; }
             set { SetValue(ref _txtnumero, value); }
+        }
+        public List<Mpaises> Listapaises
+        {
+            get { return _listapaises; }
+            set { SetValue(ref _listapaises, value); }
         }
         #endregion
         #region PROCESOS
@@ -58,14 +67,15 @@ namespace ride.VistaModelo
             }
 
         }
-        public void ProcesoSimple()
+        public void Mostrarpaises()
         {
-
+            var funcion = new Dpaises();
+            Listapaises = funcion.Mostrarpaises();
         }
         #endregion
         #region COMANDOS
         public ICommand Siguientecommand => new Command(Enviarsms);
-        public ICommand ProcesoSimpcommand => new Command(ProcesoSimple);
+        // public ICommand ProcesoSimpcommand => new Command(ProcesoSimple);
         #endregion
     }
 }

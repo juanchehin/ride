@@ -1,9 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ride.Vistas.Reutilizables.Listapaises">
+             x:Class="ride.Vistas.Reutilizables.Listapaises"
+             NavigationPage.HasNavigationBar="False"
+             xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms">
     <ContentPage.Resources>
-        <ResourceDictionary>
             <Style TargetType="BoxView"
                    x:Key="SeparadorBoxView">
                 <Setter Property="HeightRequest"
@@ -13,11 +14,10 @@
                 <Setter Property="Opacity"
                         Value="0.1" />
             </Style>
-        </ResourceDictionary>
     </ContentPage.Resources>
     <Grid Margin="0,200,0,0">
         <BoxView BackgroundColor="White"
-                 CornerRadius="15,15,20,0"/>
+                 CornerRadius="15,15,0,0"/>
         <StackLayout Padding="16">
             <StackLayout Orientation="Horizontal">
                 <Button Text="Cancelar"
@@ -29,6 +29,7 @@
                        HorizontalOptions="CenterAndExpand"/>
                 <Button Text="Confirmar"
                         BackgroundColor="Transparent"/>
+            </StackLayout>
                 <BoxView Style="{StaticResource SeparadorBoxView}"/>
                 <Frame Padding="5"
                        CornerRadius="8"
@@ -60,14 +61,32 @@
                 <BoxView Style="{StaticResource SeparadorBoxView}" />
                 <Label Text="Paises"
                        FontSize="14" />
-                <CollectionView>
+                <CollectionView ItemsSource="{Binding Listapaises}"
+                            x:Name="listapaises">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout ItemSpacing="20"
+                                       Orientation="Vertical"/>
+                </CollectionView.ItemsLayout>
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            
+                        <StackLayout>
+                            <StackLayout Orientation="Horizontal">
+                                <svg:SvgCachedImage Source="{Binding Iconourl}"
+                                                    HeightRequest="26"
+                                                    WidthRequest="26" />
+                                <Label Text="{Binding Pais}"
+                                       FontSize="18"
+                                       VerticalOptions="Center"/>
+                                <Label Text="{Binding Codigopais,StringFormat='+{0}'}"
+                                       FontSize="18"
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="EndAndExpand"/>
+                            </StackLayout>
+                            <BoxView Style="{StaticResource SeparadorBoxView}" />
+                        </StackLayout>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
-            </StackLayout>
         </StackLayout>
     </Grid>
 </ContentPage>
