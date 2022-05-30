@@ -112,8 +112,29 @@ namespace ride.VistaModelo
             {
             PopupNavigation.Instance.PopAsync();
             }
+        private void Buscarpais(string buscador)
+            {
+            buscador=PrimerletraMayus(buscador);
+            var funcion = new Dpaises();
+            var lista = funcion.ListaMostrarpaisesXnombre(buscador);
+            if(string.IsNullOrWhiteSpace(buscador))
+                {
+                Listapaises=new List<Mpaises>();
+                Mostrarpaises();
+                }
+            else
+                {
+                if(lista.Count>0)
+                    {
+                    Listapaises=new List<Mpaises>();
+                    Listapaises=lista;
+                    }
+                }
+            }
+
         #endregion
         #region COMANDOS
+        public ICommand Buscarcommand => new Command<string>(Buscarpais);
         public ICommand Cancelarcommand => new Command(Cancelar);
         public ICommand Confirmarcommand => new Command(Confirmarpais);
         public ICommand SelectPaiscommand => new Command<Mpaises>(SeleccionarPais);

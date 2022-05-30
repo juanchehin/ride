@@ -34,8 +34,25 @@ namespace ride.Datos
                 Iconourl = $"https://hatscripts.github.io/circle-flags/flags/{p.TwoLetterISORegionName.ToLower()}.svg"
             }));
             return listapaises;
-        }
+            }
+        public List<Mpaises> ListaMostrarpaisesXnombre( string pais)
+            {
+            var phoneNumberUtil = PhoneNumberUtil.GetInstance();
+            var listapaises = new List<Mpaises>();
+            var isopaises = PaisesIso3166();
+            var regioninfo = isopaises.FirstOrDefault(c => c.EnglishName==pais);
+            var paises = new Mpaises();
+            if(regioninfo!=null)
+                {
+                paises.Pais=regioninfo.EnglishName;
+                paises.Codigopais=phoneNumberUtil.GetCountryCodeForRegion
+                (regioninfo.TwoLetterISORegionName).ToString();
+                paises.Iconourl=$"https://hatscripts.github.io/circle-flags/flags/{regioninfo.TwoLetterISORegionName.ToLower()}.svg";
+                listapaises.Add(paises);
+                }
+            return listapaises;
 
+            }
         public Mpaises MostrarpaisesXnombre(string pais)
         {
             var phoneNumberUtil = PhoneNumberUtil.GetInstance();

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using System.Runtime.CompilerServices;
 using System.ComponentModel;
+using System.Linq;
 
 namespace ride.VistaModelo
 {
@@ -90,6 +90,22 @@ namespace ride.VistaModelo
             backingFieled = value;
 
             OnPropertyChanged(propertyName);
-        }
+            }
+
+        public string PrimerletraMayus(string objeto)
+            {
+            try
+                {
+                string input = objeto.ToString().ToLower()??throw new Exception();
+                return input.First().ToString().ToUpper()+input.Substring(1);
+                }
+            catch
+                {
+
+                return string.Empty;
+                }
+            }
+
+    
     }
 }

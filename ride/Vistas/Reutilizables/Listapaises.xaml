@@ -4,7 +4,8 @@
              x:Class="ride.Vistas.Reutilizables.Listapaises"
              NavigationPage.HasNavigationBar="False"
              xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
-             xmlns:pop="http://rotorgames.com">
+             xmlns:pop="http://rotorgames.com"
+               xmlns:bh="clr-namespace:ride.Behaviors">
     <pop:PopupPage.Animation>
         <pop:MoveAnimation PositionIn="Bottom"
                            PositionOut="Bottom"
@@ -23,6 +24,9 @@
         </Style>
     </pop:PopupPage.Resources>
     <Grid Margin="0,200,0,0">
+        <Grid.Behaviors>
+            <bh:Blistapaises/>
+        </Grid.Behaviors>
         <BoxView BackgroundColor="White"
                  CornerRadius="15,15,0,0"/>
         <StackLayout Padding="16">
@@ -48,6 +52,11 @@
                            PlaceholderColor="Silver"
                            BackgroundColor="White"
                            x:Name="txtbuscador">
+                    <SearchBar.Behaviors>
+                        <bh:Entrybuscador EventName="TextChanged"
+                                          Command="{Binding Buscarcommand}"
+                                          CommandParameter="{Binding Text,Source={x:Reference txtbuscador}}"/>
+                    </SearchBar.Behaviors>
                 </SearchBar>
                 </Frame>
                 <Label Text="Seleccionado"
