@@ -85,7 +85,7 @@
                Padding="0"
                HasShadow="False"
                >
-                <maps1:Map IsShowingUser="True"/>
+                <maps1:Map />
             </Frame>
         </StackLayout>
     </ContentPage.Content>

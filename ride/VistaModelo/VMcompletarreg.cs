@@ -64,12 +64,12 @@ namespace ride.VistaModelo
 
                 #endregion
                 var accountSid = "ACe031aa5545b40dba5952caa476bf7e45";
-                var authToken = "AuthToken";
+                var authToken = "";
                 TwilioClient.Init(accountSid, authToken);
 
                 var messageOptions = new CreateMessageOptions(new PhoneNumber(Txtnumero));
                 messageOptions.MessagingServiceSid = "";
-                messageOptions.Body = "Hola, usa este codigo para validar tu codigo en ride" + randomsms;
+                messageOptions.Body = "Hola, usa este codigo para validar tu codigo en ride : " + randomsms;
 
                 var message = MessageResource.Create(messageOptions);
                 await Navigation.PushAsync(new DigitarCodigo(randomsms));
