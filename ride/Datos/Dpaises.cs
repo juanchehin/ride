@@ -36,5 +36,25 @@ namespace ride.Datos
             return listapaises;
         }
 
+        public Mpaises MostrarpaisesXnombre(string pais)
+        {
+            var phoneNumberUtil = PhoneNumberUtil.GetInstance();
+            var isopais = PaisesIso3166();
+            var regioninfo = isopais.FirstOrDefault(c => c.EnglishName == pais);
+
+            return regioninfo != null
+                ? new Mpaises
+                {
+                    Codigopais = phoneNumberUtil.GetCountryCodeForRegion
+                        (regioninfo.TwoLetterISORegionName).ToString(),
+                    Pais = regioninfo.EnglishName,
+                    Iconourl = $"https://hatscripts.github.io/circle-flags/flags/{regioninfo.TwoLetterISORegionName.ToLower()}.svg"
+                }
+                : new Mpaises
+                {
+                    Pais = pais
+                };
+        }
+
     }
 }

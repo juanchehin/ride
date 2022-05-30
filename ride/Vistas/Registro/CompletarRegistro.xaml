@@ -1,7 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ride.Vistas.Registro.CompletarRegistro">
+             x:Class="ride.Vistas.Registro.CompletarRegistro"
+             Visual="Material"
+             xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms">
     <StackLayout BackgroundColor="White"
                  Padding="15">
         <Label Text="Confirma tu información"
@@ -33,8 +35,15 @@
                    CornerRadius="8"
                    HasShadow="False">
                 <StackLayout Orientation="Horizontal">
+                    <svg:SvgCachedImage Source="{Binding SelectPaisDefault.Iconourl}"
+                                        HeightRequest="26"
+                                        WidthRequest="26"
+                                        Margin="5"/>
                     <Image Source="https://i.ibb.co/ggFB6y6/ordenar-abajo.png"
                            HeightRequest="9" />
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Irpaisescommand}"/>
+                    </StackLayout.GestureRecognizers>
                 </StackLayout>
             </Frame>
             <Frame HorizontalOptions="FillAndExpand"
@@ -43,7 +52,7 @@
                    HasShadow="False"
                    BackgroundColor="#EEEEEE">
                 <StackLayout Orientation="Horizontal">
-                    <Label Text="+51"
+                    <Label Text="{Binding SelectPaisDefault.Codigopais,StringFormat='+{0}'}"
                            TextColor="Black"
                            FontSize="Medium"
                            VerticalOptions="Center" />
@@ -51,8 +60,8 @@
                            Placeholder="Numero de móvil"
                            HorizontalOptions="FillAndExpand"
                            Keyboard="Telephone"
-                           Text="{Binding Txtnumero}"
-                           ></Entry>
+                           Text="{Binding Txtnumero}"/>
+                    
                 </StackLayout>
             </Frame>
         </StackLayout>
@@ -82,7 +91,7 @@
                            HorizontalOptions="End"
                            Margin="0,0,10,0" />
                     <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding Siguientecommand}"></TapGestureRecognizer>
+                        <TapGestureRecognizer Command="{Binding Siguientecommand}"/>
                     </StackLayout.GestureRecognizers>
                 </StackLayout>
             </Frame>

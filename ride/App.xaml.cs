@@ -13,7 +13,7 @@ namespace ride
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new Listapaises()); 
+            MainPage = new NavigationPage(new Empezar()); 
         }
 
         protected override void OnStart()

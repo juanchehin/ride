@@ -1,8 +1,8 @@
 ﻿using Android.Content.PM;
 using Android.Runtime;
 using Android.OS;
-using Android.Gms.Auth.Api.SignIn;
 using Plugin.CurrentActivity;
+using Android.Gms.Auth.Api.SignIn;
 using Android.Gms.Auth.Api;
 using FFImageLoading.Forms.Platform;
 using Android.App;
@@ -23,6 +23,7 @@ namespace ride.Droid
             global::Xamarin.Forms.FormsMaterial.Init(this, savedInstanceState);
             Xamarin.FormsGoogleMaps.Init(this,savedInstanceState);
             CachedImageRenderer.Init(true);
+            Rg.Plugins.Popup.Popup.Init(this);
             LoadApplication(new App());
         }
         protected override void OnActivityResult(int requestCode, Result resultCode, Android.Content.Intent data)

@@ -1,43 +1,54 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<pop:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ride.Vistas.Reutilizables.Listapaises"
              NavigationPage.HasNavigationBar="False"
-             xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms">
-    <ContentPage.Resources>
-            <Style TargetType="BoxView"
-                   x:Key="SeparadorBoxView">
-                <Setter Property="HeightRequest"
-                        Value="2" />
-                <Setter Property="BackgroundColor"
-                        Value="#979797" />
-                <Setter Property="Opacity"
-                        Value="0.1" />
-            </Style>
-    </ContentPage.Resources>
+             xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:pop="http://rotorgames.com">
+    <pop:PopupPage.Animation>
+        <pop:MoveAnimation PositionIn="Bottom"
+                           PositionOut="Bottom"
+                           DurationIn="400"
+                           DurationOut="300"
+                           HasBackgroundAnimation="True"/>
+    </pop:PopupPage.Animation>
+    <pop:PopupPage.Resources>
+        <Style TargetType="BoxView">
+            <Setter Property="HeightRequest"
+                    Value="2" />
+            <Setter Property="BackgroundColor"
+                    Value="#979797" />
+            <Setter Property="Opacity"
+                    Value="0.1" />
+        </Style>
+    </pop:PopupPage.Resources>
     <Grid Margin="0,200,0,0">
         <BoxView BackgroundColor="White"
                  CornerRadius="15,15,0,0"/>
         <StackLayout Padding="16">
             <StackLayout Orientation="Horizontal">
                 <Button Text="Cancelar"
-                        BackgroundColor="Transparent"/>
-                <Label Text="Selecciona tu pais"
+                        BackgroundColor="Transparent"
+                        Command="{Binding Cancelarcommand}"/>
+                <Label Text="Selecciona tu país"
                        FontSize="18"
                        FontAttributes="Bold"
                        VerticalTextAlignment="Center"
                        HorizontalOptions="CenterAndExpand"/>
                 <Button Text="Confirmar"
-                        BackgroundColor="Transparent"/>
+                        BackgroundColor="Transparent"
+                        Command="{Binding Confirmarcommand}"/>
             </StackLayout>
-                <BoxView Style="{StaticResource SeparadorBoxView}"/>
+                <!-- <BoxView Style="{StaticResource SeparadorBoxView}"/> -->
                 <Frame Padding="5"
                        CornerRadius="8"
                        HasShadow="False"
                        BorderColor="Silver">
-                    <SearchBar Placeholder="Busca tu pais..."
-                               PlaceholderColor="Silver"
-                               BackgroundColor="White"/>
+                <SearchBar Placeholder="busca tu país..."
+                           PlaceholderColor="Silver"
+                           BackgroundColor="White"
+                           x:Name="txtbuscador">
+                </SearchBar>
                 </Frame>
                 <Label Text="Seleccionado"
                        FontSize="14"
@@ -45,20 +56,23 @@
                 <Frame CornerRadius="10"
                        HasShadow="False">
                     <StackLayout Orientation="Horizontal">
-                        <Label Text="Argentina"
+                    <svg:SvgCachedImage HeightRequest="26"
+                                        WidthRequest="26"
+                                        Source="{Binding SelectPais.Iconourl}"/>
+                    <Label Text="{Binding SelectPais.Pais}"
                                FontAttributes="Bold"
                                TextColor="White"/>
                     </StackLayout>
                     <Frame.Background>
                         <LinearGradientBrush>
-                            <GradientStop Color="#ff746c"
+                        <GradientStop Color="#fd746c"
                                           Offset="0.5"/>
                              <GradientStop Color="#ff9068"
                                           Offset="1.0"/>
                         </LinearGradientBrush>
                     </Frame.Background>
                 </Frame>
-                <BoxView Style="{StaticResource SeparadorBoxView}" />
+                <!-- <BoxView Style="{StaticResource SeparadorBoxView}" /> -->
                 <Label Text="Paises"
                        FontSize="14" />
                 <CollectionView ItemsSource="{Binding Listapaises}"
@@ -82,11 +96,15 @@
                                        VerticalOptions="Center"
                                        HorizontalOptions="EndAndExpand"/>
                             </StackLayout>
-                            <BoxView Style="{StaticResource SeparadorBoxView}" />
+                            <!-- <BoxView Style="{StaticResource SeparadorBoxView}" /> -->
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Path=BindingContext.SelectPaiscommand,Source={x:Reference listapaises}}"
+                                                      CommandParameter="{Binding .}"/>
+                            </StackLayout.GestureRecognizers>
                         </StackLayout>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
         </StackLayout>
     </Grid>
-</ContentPage>
+</pop:PopupPage>
