@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using ride.VistaModelo;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace ride.Vistas.MenuPrincipal
@@ -9,6 +10,7 @@ namespace ride.Vistas.MenuPrincipal
         public Vmenuprincipal()
         {
             InitializeComponent();
+            BindingContext=new VMmenuprincipal(Navigation);
         }
     }
 }

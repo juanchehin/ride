@@ -1,8 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:maps1="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
+             xmlns:toolkit="http://xamarin.com/schemas/2020/toolkit"
              x:Class="ride.Vistas.MenuPrincipal.Vmenuprincipal">
-    <ContentPage.Content>
+    <ContentPage.Behaviors>
+        <toolkit:EventToCommandBehavior EventName="Appearing"
+                                        Command="{Binding Validarcommand}"/>
+    </ContentPage.Behaviors>
         <StackLayout Padding="20"
                  BackgroundColor="White"
                  Spacing="18">
@@ -22,7 +27,7 @@
                            FontSize="Medium"
                            FontAttributes="Bold" />
                         <StackLayout Orientation="Horizontal">
-                            <Label Text="Viajar con Uber"
+                            <Label Text="Viajar con Ride"
                                TextColor="Black"
                                FontSize="Body" />
                             <Image Source="https://i.ibb.co/cD2Y2N9/flecha-correcta.png"
@@ -83,10 +88,8 @@
             <Frame VerticalOptions="FillAndExpand"
                CornerRadius="20"
                Padding="0"
-               HasShadow="False"
-               >
-                <maps1:Map />
+               HasShadow="False">
+                <maps:Map />
             </Frame>
         </StackLayout>
-    </ContentPage.Content>
 </ContentPage>

@@ -77,7 +77,7 @@ namespace ride.VistaModelo
             }
             catch (Exception ex)
             {
-                // await DisplayAlert("Alerta", ex.Message); 
+                // await DisplayAlert("Alerta", ex.Message);
             }
 
         }
