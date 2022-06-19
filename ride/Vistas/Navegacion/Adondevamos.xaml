@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ride.Vistas.Navegacion.Adondevamos"
+             NavigationPage.HasNavigationBar="False"
+             xmlns:sombras="clr-namespace:Sharpnado.Shades;assembly=Sharpnado.Shadows"
+             xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
+             xmlns:reutilizables="clr-namespace:ride.Vistas.Reutilizables"
+             xmlns:toolkit="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:navegacion="clr-namespace:ride.Vistas.Navegacion">
+    
+    <Grid BackgroundColor="White">
+        <Grid RowDefinitions="*,auto">
+            <Frame 
+                   Padding="0"
+                   Margin="20,10"
+                   HasShadow="False"
+                   CornerRadius="20">
+                <maps:Map x:Name="Mapa" />
+            </Frame>
+          
+           
+            <Image Source="fijar.png"
+                  
+                   VerticalOptions="Center"
+                   HorizontalOptions="Center"
+                   HeightRequest="50"
+                   />
+            
+              <sombras:Shadows CornerRadius="0"
+                             Shades="{sombras:SingleShade Offset='0,5',Opacity=0.39,Color=Gray,BlurRadius=10}"
+                               Grid.Row="1">
+                <StackLayout Padding="20,5"
+                             BackgroundColor="White">
+                    <StackLayout Orientation="Horizontal">
+                        <Image Source="https://i.ibb.co/k5gTQFK/flecha-izquierda-2.png"
+                               HeightRequest="20"
+                               HorizontalOptions="Start" />
+                        <StackLayout Orientation="Horizontal"
+                                     HorizontalOptions="CenterAndExpand">
+                            <Frame CornerRadius="50"
+                                   VerticalOptions="Center"
+                                   Padding="3"
+                                   HasShadow="False">
+                                <Frame.Background>
+                                    <RadialGradientBrush>
+                                        <GradientStop Color="White"
+                                                      Offset="0.1" />
+                                        <GradientStop Color="White"
+                                                      Offset="0.1" />
+                                        <GradientStop Color="White"
+                                                      Offset="0.1" />
+                                        <GradientStop Color="#E9E9E9"
+                                                      Offset="0.1" />
+                                        <GradientStop Color="LightGray"
+                                                      Offset="1.0" />
+                                    </RadialGradientBrush>
+                                </Frame.Background>
+                                <Image Source="https://i.ibb.co/VQy5z4d/usuario-masculino-1.png"
+                                       HeightRequest="17"
+                                       Margin="4" />
+                            </Frame>
+                            <Label Text="Para Mí"
+                                   VerticalOptions="Center"
+                                   TextColor="Black" />
+                            <Image Source="https://i.ibb.co/64647fr/flecha-hacia-abajo.png"
+                                   HeightRequest="10" />
+                        </StackLayout>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <StackLayout VerticalOptions="Center"
+                                     Margin="0,0,12,0">
+                            <BoxView BackgroundColor="Black"
+                                     HeightRequest="6"
+                                     WidthRequest="6"
+                                     CornerRadius="10"
+                                     HorizontalOptions="Center" />
+                            <Line HeightRequest="50"
+                                  BackgroundColor="#AFAFAF"
+                                  WidthRequest="2"
+                                  HorizontalOptions="Center"
+                                  Margin="0,-5" />
+                            <BoxView BackgroundColor="Black"
+                                     HeightRequest="6"
+                                     WidthRequest="6"
+                                     HorizontalOptions="Center" />
+                        </StackLayout>
+                        <StackLayout HorizontalOptions="FillAndExpand">
+                            <StackLayout>
+                                <Frame BackgroundColor="#F9F9F9"
+                                       HasShadow="False"
+                                       Padding="2,1"
+                                       VerticalOptions="Center"
+                                       CornerRadius="5">
+                                    <SearchBar FontSize="Subtitle"
+                                               TextColor="Black"
+                                               TranslationX="-45"
+                                               x:Name="txtorigen"
+                                               IsEnabled="False"         
+                                               Text="{Binding Txtorigen,Mode=TwoWay}" />
+                                </Frame>
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding SelectOrigencommand}" />
+                                </StackLayout.GestureRecognizers>
+                                
+                            </StackLayout>
+                            <StackLayout>
+                                <Frame BackgroundColor="#F9F9F9"
+                                       HasShadow="False"
+                                       Padding="2,1"
+                                       VerticalOptions="Center"
+                                       CornerRadius="5">
+                                    <SearchBar Text="{Binding Txtdestino,Mode=TwoWay}"
+                                               FontSize="Subtitle"
+                                               TextColor="Black"
+                                               TranslationX="-45"
+                                               Placeholder="¿A dónde vamos?"
+                                               PlaceholderColor="#A3A3AB"
+                                               x:Name="txtdestino"
+                                               IsEnabled="{Binding EnabledTxtdestino}">
+                                        <SearchBar.Behaviors>
+                                            <toolkit:EventToCommandBehavior EventName="TextChanged"
+                                                                            Command="{Binding Buscarcommand}"
+                                                                            CommandParameter="{Binding Text,Source={x:Reference txtdestino}}" />
+                                        </SearchBar.Behaviors>
+                                    </SearchBar>
+                                </Frame>
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding SelectDestinocommand}" />
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                        </StackLayout>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="S/."
+                               FontSize="Medium"
+                               VerticalOptions="Center"/>
+                        <Entry Placeholder="Ofrezca su tarifa"
+                               HorizontalOptions="FillAndExpand"
+                               IsEnabled="False"
+                               Text="{Binding Txttarifa}"
+                               FontSize="Title"
+                               FontAttributes="Bold"/>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Verofertarcommand}" />
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                    <Button Text="Solicitar un auto"
+                            CornerRadius="10"
+                            BackgroundColor="#6247C9"
+                            TextColor="White"
+                            FontAttributes="Bold"
+                            TextTransform="None"
+                            Margin="0,0,0,20"
+                            FontSize="Medium"
+                            Command="{Binding Insertarpedidocommand}"/>
+                </StackLayout>
+            </sombras:Shadows>
+           
+           
+        </Grid>
+        <reutilizables:Listadirecciones 
+                                        IsVisible="{Binding VisibleListdirec}" />
+    </Grid>
+</ContentPage>

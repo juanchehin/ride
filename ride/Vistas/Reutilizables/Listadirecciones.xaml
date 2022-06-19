@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://xamarin.com/schemas/2020/toolkit"
+             x:Class="ride.Vistas.Reutilizables.Listadirecciones">
+    <Grid BackgroundColor="White"
+          Padding="20"
+          RowDefinitions="auto,*">
+        <StackLayout >
+            <Image Source="https://i.ibb.co/k5gTQFK/flecha-izquierda-2.png"
+                   HeightRequest="20"
+                   HorizontalOptions="Start"
+                   Margin="10"/>
+            <Frame HasShadow="False"
+                   CornerRadius="5"
+                   Padding="2,1"
+                   BackgroundColor="#F9F9F9">
+                <SearchBar FontSize="Subtitle"
+                           TextColor="Black"
+                           TranslationX="-45"
+                           x:Name="txtbuscador"
+                           IsEnabled="{Binding EnabledTxtorigen}"
+                           Text="{Binding Txtbuscador,Mode=TwoWay}">
+                    <SearchBar.Behaviors>
+                        <toolkit:EventToCommandBehavior EventName="TextChanged"
+                                                        Command="{Binding Buscarcommand}"
+                                                        CommandParameter="{Binding Text,Source={x:Reference txtbuscador}}" />
+                    </SearchBar.Behaviors>
+                </SearchBar>
+            </Frame>
+        </StackLayout>
+        <ScrollView Grid.Row="1">
+            <StackLayout>
+                <StackLayout BindableLayout.ItemsSource="{Binding Listadirecciones}"
+                             x:Name="listadirec">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Orientation="Horizontal">
+                                <Frame Padding="5"
+                                       BackgroundColor="#B6B6B6"
+                                       CornerRadius="50"
+                                       VerticalOptions="CenterAndExpand">
+                                    <Image Source="https://i.ibb.co/sjVc8fh/fijado.png"
+                                           HeightRequest="30" />
+                                </Frame>
+                                <StackLayout>
+                                    <Label Text="{Binding StructuredFormatting.MainText}"
+                                           TextColor="Black"
+                                           FontSize="Subtitle" />
+                                    <Label Text="{Binding StructuredFormatting.SecondaryText}"
+                                           TextColor="Gray" />
+                                </StackLayout>
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Path=BindingContext.SelectDireccioncommand,Source={x:Reference listadirec}}" CommandParameter="{Binding .}"/>
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Frame Padding="5"
+                           BackgroundColor="#B6B6B6"
+                           CornerRadius="50"
+                           VerticalOptions="CenterAndExpand">
+                        <Image Source="https://i.ibb.co/sjVc8fh/fijado.png"
+                               HeightRequest="30" />
+                    </Frame>
+                    <Label Text="Fija la ubicación en el mapa"
+                           TextColor="Black"
+                           FontSize="Subtitle"
+                           VerticalOptions="Center" />
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Fijarenmapacommand}"/>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </Grid>
+</ContentView>

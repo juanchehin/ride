@@ -195,3 +195,6 @@ FakesAssemblies/
 .vscode/settings.json
 
 google-services.json
+
+Conexiones/Constantes.cs
+ride/Conexiones/Constantes.cs

@@ -1,4 +1,5 @@
 ﻿using ride.Vistas.MenuPrincipal;
+using ride.Vistas.Navegacion;
 using ride.Vistas.Registro;
 using ride.Vistas.Reutilizables;
 using System;
@@ -13,7 +14,7 @@ namespace ride
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new Empezar()); 
+            MainPage = new NavigationPage(new Adondevamos()); 
         }
 
         protected override void OnStart()
