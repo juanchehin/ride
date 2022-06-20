@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ride.Vistas.Navegacion.Ofertar">
+    <Grid>
+        <BoxView BackgroundColor="Black"
+                 Opacity="0.6" />
+        <Frame Margin="10"
+               CornerRadius="15"
+               VerticalOptions="End">
+            <StackLayout>
+                <StackLayout Orientation="Horizontal"
+                             HorizontalOptions="Center">
+                    <Label Text="S/."
+                           FontSize="40"
+                           VerticalOptions="Center" />
+                    <Entry Placeholder="0.00"
+                           FontSize="40"
+                           Keyboard="Numeric"
+                           WidthRequest="150"
+                           Text="{Binding TxttarifaEmerg}"/>
+                </StackLayout>
+                <Label Text="Ofrezca una tarifa razonable para que su solicitud sea mas 
+                       atractiva."
+                       HorizontalOptions="Center"
+                       HorizontalTextAlignment="Center" />
+                <StackLayout Orientation="Horizontal"
+                             HorizontalOptions="Center">
+                    <Image Source="https://i.ibb.co/9yrYypx/cheque.png"
+                           HeightRequest="20" />
+                    <Label Text="Efectivo"
+                           FontSize="Medium"
+                           FontAttributes="Bold" />
+                </StackLayout>
+                <Line HeightRequest="1"
+                      BackgroundColor="#B6B6B6" />
+                <StackLayout Orientation="Horizontal">
+                    <Button Text="Cerrar"
+                            TextTransform="None"
+                            BackgroundColor="White"
+                            FontSize="Medium"
+                            FontAttributes="Bold"
+                            HorizontalOptions="StartAndExpand"
+                            CornerRadius="10"
+                            Command="{Binding Cerrarofertarcommand}"/>
+                    <Button Text="Hecho"
+                            TextTransform="None"
+                            BackgroundColor="White"
+                            FontSize="Medium"
+                            FontAttributes="Bold"
+                            CornerRadius="10"
+                            Command="{Binding Agregartarifacommand}"/>
+                </StackLayout>
+            </StackLayout>
+        </Frame>
+    </Grid>
+</ContentView>

@@ -132,7 +132,7 @@
                         </StackLayout>
                     </StackLayout>
                     <StackLayout Orientation="Horizontal">
-                        <Label Text="S/."
+                        <Label Text="$/."
                                FontSize="Medium"
                                VerticalOptions="Center"/>
                         <Entry Placeholder="Ofrezca su tarifa"
@@ -159,6 +159,7 @@
            
            
         </Grid>
+        <navegacion:Ofertar IsVisible="{Binding VisibleOfertar}"/>
         <reutilizables:Listadirecciones 
                                         IsVisible="{Binding VisibleListdirec}" />
     </Grid>

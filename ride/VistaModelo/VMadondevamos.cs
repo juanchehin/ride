@@ -2,6 +2,7 @@
 using ride.Servicios;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -40,14 +41,41 @@ namespace ride.VistaModelo
         {
           Navigation=navigation;
           mapa = mapareferencia;
+      mapa.PropertyChanged+=Mapa_PropertyChanged;
           EnabledTxtorigen =false;
           EnabledTxtdestino=false;
           Selectorigen=false;
           Selectdestino=false;
+      Fijarenmapa=false;
         }
 
         #endregion
         #region OBJETOS
+    public string Txtbuscador
+      {
+      get { return _txtbuscador; }
+      set { SetValue(ref _txtbuscador,value); }
+      }
+    public string TxttarifaEmerg
+      {
+      get { return _txttarifaEmerg; }
+      set { SetValue(ref _txttarifaEmerg,value); }
+      }
+    public string Txttarifa
+      {
+      get { return _txttarifa; }
+      set { SetValue(ref _txttarifa,value); }
+      }
+    public bool VisibleOfertar
+      {
+      get { return _visibleOfertar; }
+      set { SetValue(ref _visibleOfertar,value); }
+      }
+    public bool Fijarenmapa
+      {
+      get { return _fijarenmapa; }
+      set { SetValue(ref _fijarenmapa,value); }
+      }
     public bool VisibleListdirec
       {
       get { return _visibleListdirec; }
@@ -91,6 +119,66 @@ namespace ride.VistaModelo
      }
         #endregion
         #region PROCESOS
+    private void Agregartarifa()
+      {
+      Txttarifa=TxttarifaEmerg;
+      Cerrarofertar();
+      }
+    private void Cerrarofertar()
+      {
+      VisibleOfertar=false;
+      }
+    private void VerOfertar()
+      {
+      VisibleOfertar=true;
+      }
+    [Obsolete]
+    private async void Mapa_PropertyChanged(object sender,System.ComponentModel.PropertyChangedEventArgs e)
+      {
+      if (Fijarenmapa==false)
+        {
+        return;
+        }
+      var m = (Xamarin.Forms.GoogleMaps.Map)sender;
+      if (m.VisibleRegion!=null)
+        {
+        if (Selectorigen==true)
+          {
+          Txtorigen=await ObtenerDireccion(m.VisibleRegion.Center.Latitude,m.VisibleRegion.Center.Longitude);
+          ltOrigen=m.VisibleRegion.Center.Latitude;
+          lgOrigen=m.VisibleRegion.Center.Longitude;
+          }
+        if (Selectdestino==true)
+          {
+          Txtdestino=await ObtenerDireccion(m.VisibleRegion.Center.Latitude,m.VisibleRegion.Center.Longitude);
+          ltDestino=m.VisibleRegion.Center.Latitude;
+          lgDestino=m.VisibleRegion.Center.Longitude;
+          }
+        }
+      }
+    private async Task<string> ObtenerDireccion(double lt,double lg)
+      {
+      try
+        {
+        Geocoder geoCoder = new Geocoder();
+        Position position = new Position(lt,lg);
+        IEnumerable<string> direcciones = await geoCoder.GetAddressesForPositionAsync(position);
+        string direccion = direcciones.FirstOrDefault();
+        return direccion;
+        }
+      catch (Exception ex)
+        {
+        Console.WriteLine(ex.Message);
+        return ex.Message;
+        }
+      }
+    private void FijarenMapa()
+      {
+      Fijarenmapa=true;
+      VisibleListdirec=false;
+      EnabledTxtorigen=false;
+      EnabledTxtdestino=false;
+      }
     public async Task PinActual()
       {
       punto=new Pin()
@@ -176,8 +264,8 @@ namespace ride.VistaModelo
       EnabledTxtorigen=true;
       EnabledTxtdestino=false;
       VisibleListdirec=true;
-      //Fijarenmapa=false;
-      }
+            Fijarenmapa = false;
+        }
     private void SelecionarDestino()
       {
       Selectorigen=false;
@@ -185,11 +273,15 @@ namespace ride.VistaModelo
       EnabledTxtorigen=false;
       EnabledTxtdestino=true;
       VisibleListdirec=true;
-      //Fijarenmapa=false;
-      }
+            Fijarenmapa = false;
+        }
 
         #endregion
         #region COMANDOS
+    public ICommand Agregartarifacommand => new Command(Agregartarifa);
+    public ICommand Cerrarofertarcommand => new Command(Cerrarofertar);
+    public ICommand Verofertarcommand => new Command(VerOfertar);
+        public ICommand Fijarenmapacommand => new Command(FijarenMapa);
         public ICommand SelectDireccioncommand => new Command<GooglePlaceAutoCompletePrediction>(async (p) => await SeleccionarDireccion(p));
         public ICommand SelectOrigencommand => new Command(SelecionarOrigen);
         public ICommand SelectDestinocommand => new Command(SelecionarDestino);
