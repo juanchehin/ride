@@ -1,4 +1,5 @@
-﻿using ride.Modelo;
+﻿using ride.Datos;
+using ride.Modelo;
 using ride.Servicios;
 using System;
 using System.Collections.Generic;
@@ -35,6 +36,7 @@ namespace ride.VistaModelo
         string _txtbuscador;
         Pin punto = new Pin();
         Xamarin.Forms.GoogleMaps.Map mapa;
+   public GoogleMatrix ParametrosMatrix { get; set; }
         #endregion
         #region CONSTRUCTOR
         public VMadondevamos(INavigation navigation,Xamarin.Forms.GoogleMaps.Map mapareferencia)
@@ -275,9 +277,33 @@ namespace ride.VistaModelo
       VisibleListdirec=true;
             Fijarenmapa = false;
         }
+    private async void Insertarpedido()
+      {
 
+      //var Coororigen = ltOrigen+","+lgOrigen;
+      //var Coordestino = ltDestino+","+lgDestino;
+      var Coororigen = "-12.042987,-77.053570";
+      var Coordestino = "-12.058177,-76.997125";
+      ParametrosMatrix=await _googleMapsApi.Calculardistanciatiempo(Coororigen,Coordestino);
+       var funcion = new Dpedidos();
+      var parametros = new Mpedidos();
+      parametros.origen_lugar=Txtorigen;
+      parametros.destino_lugar=Txtdestino;
+      parametros.idchofer="Modelo";
+      parametros.iduser="Modelo";
+      parametros.lt_lg_origen=Coororigen;
+      parametros.lt_lg_destino=Coordestino;
+      parametros.estado="PENDIENTE";
+      parametros.tiempo=ParametrosMatrix.Rows[0].Elements[0].duration.text;
+      parametros.tarifa=Txttarifa;
+      parametros.distancia=ParametrosMatrix.Rows[0].Elements[0].distance.value.ToString();
+      await funcion.Insertarpedidos(parametros);
+      //await Navigation.PushAsync(new Esperarofertas(parametros));
+     
+      }
         #endregion
         #region COMANDOS
+    public ICommand Insertarpedidocommand => new Command(Insertarpedido);
     public ICommand Agregartarifacommand => new Command(Agregartarifa);
     public ICommand Cerrarofertarcommand => new Command(Cerrarofertar);
     public ICommand Verofertarcommand => new Command(VerOfertar);

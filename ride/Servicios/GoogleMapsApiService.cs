@@ -7,6 +7,12 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+
+using ride.Conexiones;
+using ride.Modelo;
+using ride.Vistas.Registro;
 namespace ride.Servicios
 {
     public class GoogleMapsApiService : IGoogleMapsApiService
@@ -59,9 +65,25 @@ namespace ride.Servicios
         }
       return result;
       }
-        //public Task<GoogleMatrix> Calculardistanciatiempo(string origen, string destino)
-        //{
-        //    throw new NotImplementedException();
-        //}
+    #region MATRIX API
+  public async Task<GoogleMatrix> Calculardistanciatiempo(string origen, string destino)
+      {
+      GoogleMatrix result= null;
+      using (var httpClient = CreateClient())
+        {
+        var response = await httpClient.GetAsync($"api/distancematrix/json?origins={origen}&destinations={destino}&key={Constantes.GoogleMapsApiKey}").ConfigureAwait(false);
+        if (response.IsSuccessStatusCode)
+          {
+          var json = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+          if(!string.IsNullOrWhiteSpace(json)&&json!="ERROR")
+            {
+            result = await Task.Run(()=>
+            JsonConvert.DeserializeObject<GoogleMatrix>(json)).ConfigureAwait(false);
+            }
+          }
+        }
+      return result;
+      }
+    #endregion
     }
 }

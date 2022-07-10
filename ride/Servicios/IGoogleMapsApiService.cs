@@ -11,7 +11,7 @@ namespace ride.Servicios
     {
     Task<GooglePlaceAutoCompleteResult> ApiPlaces(string text);
     Task<GooglePlace> ApiPlacesDetails(string placeId);
-    //Task<GoogleMatrix> Calculardistanciatiempo(string origen,string destino);
+        Task<GoogleMatrix> Calculardistanciatiempo(string origen, string destino);
 
 
     }
