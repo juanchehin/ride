@@ -10,7 +10,11 @@
             <Image Source="https://i.ibb.co/k5gTQFK/flecha-izquierda-2.png"
                    HeightRequest="20"
                    HorizontalOptions="Start"
-                   Margin="10"/>
+                   Margin="10">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding Volverdebuscarcommand}"/>
+                </Image.GestureRecognizers>
+            </Image>
             <Frame HasShadow="False"
                    CornerRadius="5"
                    Padding="2,1"
@@ -18,8 +22,7 @@
                 <SearchBar FontSize="Subtitle"
                            TextColor="Black"
                            TranslationX="-45"
-                           x:Name="txtbuscador"
-                           IsEnabled="{Binding EnabledTxtorigen}"
+                           x:Name="txtbuscador"           
                            Text="{Binding Txtbuscador,Mode=TwoWay}">
                     <SearchBar.Behaviors>
                         <toolkit:EventToCommandBehavior EventName="TextChanged"

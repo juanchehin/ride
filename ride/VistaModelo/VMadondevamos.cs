@@ -4,7 +4,6 @@ using ride.Servicios;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Essentials;
@@ -43,12 +42,12 @@ namespace ride.VistaModelo
         {
           Navigation=navigation;
           mapa = mapareferencia;
-      mapa.PropertyChanged+=Mapa_PropertyChanged;
+          mapa.PropertyChanged+=Mapa_PropertyChanged;
           EnabledTxtorigen =false;
           EnabledTxtdestino=false;
           Selectorigen=false;
           Selectdestino=false;
-      Fijarenmapa=false;
+          Fijarenmapa=false;
         }
 
         #endregion
@@ -231,7 +230,7 @@ namespace ride.VistaModelo
         {
             var places = await _googleMapsApi.ApiPlaces(buscador);  // Trae los lugares desde la API de google maps
             var placeResults = places.AutoCompletePlaces;
-            Console.WriteLine("placeResults : ", placeResults);
+
             if (placeResults != null && placeResults.Count > 0)
             {
                 Listadirecciones = new List<GooglePlaceAutoCompletePrediction>(placeResults);
@@ -267,6 +266,7 @@ namespace ride.VistaModelo
       EnabledTxtdestino=false;
       VisibleListdirec=true;
             Fijarenmapa = false;
+      Txtbuscador="";
         }
     private void SelecionarDestino()
       {
@@ -276,6 +276,7 @@ namespace ride.VistaModelo
       EnabledTxtdestino=true;
       VisibleListdirec=true;
             Fijarenmapa = false;
+      Txtbuscador="";
         }
     private async void Insertarpedido()
       {
@@ -301,12 +302,17 @@ namespace ride.VistaModelo
       //await Navigation.PushAsync(new Esperarofertas(parametros));
      
       }
+    private void Volverdebuscar()
+    {
+        VisibleListdirec=false;
+    }
         #endregion
         #region COMANDOS
-    public ICommand Insertarpedidocommand => new Command(Insertarpedido);
-    public ICommand Agregartarifacommand => new Command(Agregartarifa);
-    public ICommand Cerrarofertarcommand => new Command(Cerrarofertar);
-    public ICommand Verofertarcommand => new Command(VerOfertar);
+        public ICommand Volverdebuscarcommand => new Command(Volverdebuscar);
+        public ICommand Insertarpedidocommand => new Command(Insertarpedido);
+        public ICommand Agregartarifacommand => new Command(Agregartarifa);
+        public ICommand Cerrarofertarcommand => new Command(Cerrarofertar);
+        public ICommand Verofertarcommand => new Command(VerOfertar);
         public ICommand Fijarenmapacommand => new Command(FijarenMapa);
         public ICommand SelectDireccioncommand => new Command<GooglePlaceAutoCompletePrediction>(async (p) => await SeleccionarDireccion(p));
         public ICommand SelectOrigencommand => new Command(SelecionarOrigen);

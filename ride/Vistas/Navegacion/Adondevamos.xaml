@@ -117,7 +117,7 @@
                                                Placeholder="¿A dónde vamos?"
                                                PlaceholderColor="#A3A3AB"
                                                x:Name="txtdestino"
-                                               IsEnabled="{Binding EnabledTxtdestino}">
+                                               IsEnabled="false">
                                         <SearchBar.Behaviors>
                                             <toolkit:EventToCommandBehavior EventName="TextChanged"
                                                                             Command="{Binding Buscarcommand}"
