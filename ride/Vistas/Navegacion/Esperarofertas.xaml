@@ -1,12 +1,95 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ride.Vistas.Navegacion.Esperarofertas">
-    <ContentPage.Content>
+             x:Class="ride.Vistas.Navegacion.Esperarofertas"
+             NavigationPage.HasNavigationBar="False"
+             xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
+             xmlns:sombras="clr-namespace:Sharpnado.Shades;assembly=Sharpnado.Shadows"
+             xmlns:navegacion="clr-namespace:ride.Vistas.Navegacion">
+    <Grid BackgroundColor="White">
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Button Text="Cancelar"
+                    TextTransform="None"
+                    HorizontalOptions="End"
+                    CornerRadius="10"
+                    BackgroundColor="White" />
+            <Grid VerticalOptions="FillAndExpand">
+                <maps:Map />
+                <Grid Margin="20,10">
+                    <BoxView BackgroundColor="#FFDE54"
+                             Opacity="0.65"
+                             CornerRadius="28" />
+                    <Label Text="Ofreciendo su tarifa a los conductores, espere"
+                           FontSize="30"
+                           FontAttributes="Bold"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"
+                           TextColor="Black"
+                           Margin="20" />
+                </Grid>
+                <Grid VerticalOptions="End">
+                    <BoxView CornerRadius="20,20,0,0"
+                             BackgroundColor="White" />
+                    <StackLayout Margin="50">
+                        <StackLayout Orientation="Horizontal">
+                            <Image Source="https://i.ibb.co/hLwhJWD/encendiendo.png"
+                                   HeightRequest="30"
+                                   VerticalOptions="Center" />
+                            <Label Text="Aumento en la demanda de viajes Ofrece un precio más alto o intenta de nuevo más tarde."
+                                   HorizontalOptions="Center"
+                                   HorizontalTextAlignment="Center"
+                                   FontSize="14"
+                                   TextColor="Black" />
+                        </StackLayout>
+                        <StackLayout>
+                            <Label Text="Precio actual"
+                                   FontSize="18"
+                                   HorizontalOptions="Center"
+                                   Margin="20" />
+                            <StackLayout Orientation="Horizontal">
+                                <Frame CornerRadius="20"
+                                       Padding="15">
+                                    <Label Text="-0.5"
+                                           FontAttributes="Bold"
+                                           TextColor="#8A42F2"
+                                           FontSize="Title" />
+                                </Frame>
+                                <Label Text="S/.30"
+                                       HorizontalOptions="CenterAndExpand"
+                                       TextColor="Black"
+                                       FontSize="30"
+                                       VerticalTextAlignment="Center" />
+                                <Frame CornerRadius="20"
+                                       Padding="15">
+                                    <Label Text="+0.5"
+                                           FontAttributes="Bold"
+                                           TextColor="#8A42F2"
+                                           FontSize="Title" />
+                                </Frame>
+                            </StackLayout>
+                        </StackLayout>
+                        <sombras:Shadows CornerRadius="20"
+                                         Shades="{sombras:SingleShade Offset='0,5' ,Opacity=0.6,Color=#AC52ED,BlurRadius=20}">
+                            <Button Text="Aumentar precio"
+                                    TextTransform="None"
+                                    CornerRadius="20"
+                                    TextColor="White"
+                                    FontAttributes="Bold"
+                                    FontSize="30"
+                                    Margin="0,20,0,0">
+                                <Button.Background>
+                                    <LinearGradientBrush>
+                                        <GradientStop Color="#6247C9"
+                                                      Offset="0.5" />
+                                        <GradientStop Color="#AC52ED"
+                                                      Offset="1.0" />
+                                    </LinearGradientBrush>
+                                </Button.Background>
+                            </Button>
+                        </sombras:Shadows>
+                    </StackLayout>
+                </Grid>
+            </Grid>
         </StackLayout>
-    </ContentPage.Content>
+    </Grid>
 </ContentPage>

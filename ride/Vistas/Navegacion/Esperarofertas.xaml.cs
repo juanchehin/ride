@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using ride.VistaModelo;
+
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
