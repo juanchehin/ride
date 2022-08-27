@@ -1,11 +1,13 @@
 ﻿using ride.Datos;
 using ride.Modelo;
 using ride.Servicios;
+using ride.Vistas.Navegacion;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using ride.Vistas.Navegacion;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.GoogleMaps;
@@ -281,10 +283,10 @@ namespace ride.VistaModelo
     private async void Insertarpedido()
       {
 
-      //var Coororigen = ltOrigen+","+lgOrigen;
-      //var Coordestino = ltDestino+","+lgDestino;
-      var Coororigen = "-12.042987,-77.053570";
-      var Coordestino = "-12.058177,-76.997125";
+            var Coororigen = ltOrigen.ToString().Replace(",",".") + "," + lgOrigen.ToString().Replace(",", ".");
+            var Coordestino = ltDestino.ToString().Replace(",", ".") + "," + lgDestino.ToString().Replace(",", ".");
+      //var Coororigen = "-12.042987,-77.053570";
+      //var Coordestino = "-12.058177,-76.997125";
       ParametrosMatrix=await _googleMapsApi.Calculardistanciatiempo(Coororigen,Coordestino);
        var funcion = new Dpedidos();
       var parametros = new Mpedidos();
@@ -295,13 +297,32 @@ namespace ride.VistaModelo
       parametros.lt_lg_origen=Coororigen;
       parametros.lt_lg_destino=Coordestino;
       parametros.estado="PENDIENTE";
-      parametros.tiempo=ParametrosMatrix.Rows[0].Elements[0].duration.text;
+
+            if (ParametrosMatrix.Rows[0].Elements[0].duration == null)
+            {
+                parametros.tiempo = "0";
+            }
+            else
+            {
+                parametros.tiempo = ParametrosMatrix.Rows[0].Elements[0].duration.text;
+            }
+
       parametros.tarifa=Txttarifa;
-      parametros.distancia=ParametrosMatrix.Rows[0].Elements[0].distance.value.ToString();
+
+            if (ParametrosMatrix.Rows[0].Elements[0].distance == null)
+            {
+                parametros.distancia = "0";
+            }
+            else
+            {
+                parametros.distancia = ParametrosMatrix.Rows[0].Elements[0].distance.value.ToString();
+            }
+            
       await funcion.Insertarpedidos(parametros);
-      //await Navigation.PushAsync(new Esperarofertas(parametros));
-     
-      }
+
+            await Navigation.PushAsync(new Esperarofertas());
+
+        }
     private void Volverdebuscar()
     {
         VisibleListdirec=false;

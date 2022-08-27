@@ -7,12 +7,6 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-
-using ride.Conexiones;
-using ride.Modelo;
-using ride.Vistas.Registro;
 namespace ride.Servicios
 {
     public class GoogleMapsApiService : IGoogleMapsApiService
@@ -28,6 +22,7 @@ namespace ride.Servicios
             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             return httpClient;
         }
+
         public async Task <GooglePlaceAutoCompleteResult> ApiPlaces(string text)
         {
             GooglePlaceAutoCompleteResult results = null;
