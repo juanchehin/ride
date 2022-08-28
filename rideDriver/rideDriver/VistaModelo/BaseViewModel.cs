@@ -6,7 +6,7 @@ using System.Runtime.CompilerServices;
 using System.ComponentModel;
 using System.Linq;
 
-namespace ride.VistaModelo
+namespace rideDriver.VistaModelo
 {
     public class BaseViewModel : INotifyPropertyChanged
     {

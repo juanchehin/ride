@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-using ride.Modelo;
+using rideDriver.Modelo;
 
-namespace ride.Servicios
+namespace rideDriver.Servicios
   {
   public interface IGoogleMapsApiService
     {

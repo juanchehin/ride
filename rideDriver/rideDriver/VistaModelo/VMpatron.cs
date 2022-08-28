@@ -2,7 +2,7 @@
 using System.Windows.Input;
 using Xamarin.Forms;
 
-namespace ride.VistaModelo
+namespace rideDriver.VistaModelo
 {
     public class VMpatron
     {

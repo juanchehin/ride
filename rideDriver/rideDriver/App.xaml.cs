@@ -1,4 +1,5 @@
-﻿using System;
+﻿using rideDriver.Vistas.Navegacion;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,7 +11,7 @@ namespace rideDriver
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new NavigationPage(new Pedidos());
         }
 
         protected override void OnStart()

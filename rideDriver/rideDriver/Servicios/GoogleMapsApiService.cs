@@ -1,13 +1,13 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using ride.Conexiones;
-using ride.Modelo;
+using rideDriver.Modelo;
 using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
-namespace ride.Servicios
+namespace rideDriver.Servicios
 {
     public class GoogleMapsApiService : IGoogleMapsApiService
     {
