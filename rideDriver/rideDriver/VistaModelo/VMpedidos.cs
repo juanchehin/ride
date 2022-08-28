@@ -80,7 +80,7 @@ namespace rideDriver.VistaModelo
         }
     public async void Seleccionar(Mpedidos parametros)
       {
-            //await Navigation.PushAsync(new Negociar(parametros));
+            await Navigation.PushAsync(new Negociar(parametros));
         }
     private void Mostrarofertas()
       {
