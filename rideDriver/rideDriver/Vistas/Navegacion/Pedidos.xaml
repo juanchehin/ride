@@ -1,12 +1,82 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="rideDriver.Vistas.Navegacion.Pedidos">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+             x:Class="rideDriver.Vistas.Navegacion.Pedidos"
+             NavigationPage.HasNavigationBar="False"
+             xmlns:vistas="clr-namespace:rideDriver.Vistas.Navegacion">
+    <Grid BackgroundColor="White">
+        <StackLayout Padding="20"
+               IsVisible="{Binding VisiblePedidos}">
+            <Button Text="Ocupado"
+                    CornerRadius="20"
+                    BackgroundColor="White"
+                    FontAttributes="Bold"
+                    TextTransform="None" />
+            <CollectionView ItemsSource="{Binding Listapedidos}"
+                            x:Name="listapedidos">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid ColumnDefinitions="auto,*"
+                              RowDefinitions="*,auto">
+                            <StackLayout>
+                                <Frame Padding="0"
+                                       WidthRequest="60"
+                                       HeightRequest="60"
+                                       CornerRadius="30"
+                                       HasShadow="False">
+                                    <Image Source="https://i.ibb.co/k2kRbPY/bino.png"
+                                           Aspect="AspectFill" />
+                                </Frame>
+                                <Label Text="Nombre"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center" />
+                                <Label Text="4 min"
+                                       HorizontalOptions="Center"
+                                       TextColor="#a9a9a8" />
+                            </StackLayout>
+                            <StackLayout Grid.Column="1">
+                                <Label Text="{Binding origen_lugar}"
+                                       FontAttributes="Bold"
+                                       TextColor="Black"
+                                       FontSize="20" />
+                                <Label Text="{Binding destino_lugar}"
+                                       FontSize="17" />
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding tarifa}"
+                                           FontAttributes="Bold"
+                                           FontSize="Title"
+                                           TextColor="#ff3002" />
+                                    <Label Text="250 m"
+                                           VerticalOptions="Center"
+                                           FontAttributes="Bold" />
+                                    <Frame Padding="10,5"
+                                           CornerRadius="10"
+                                           HasShadow="False"
+                                           BackgroundColor="#CEFEF0">
+                                        <Label Text="Efectivo"
+                                               VerticalOptions="Center"
+                                               FontAttributes="Bold"
+                                               TextColor="#00de87" />
+                                    </Frame>
+                                </StackLayout>
+                            </StackLayout>
+                            <BoxView Grid.Row="1"
+                                     Grid.ColumnSpan="2"
+                                     CornerRadius="10"
+                                     HeightRequest="2"
+                                     Opacity="0.5"
+                                     BackgroundColor="#E0E4E2" 
+                                     Margin="0,0,0,10"/>
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Path=BindingContext.Seleccionarcommand,Source={x:Reference listapedidos}}"
+                                                      CommandParameter="{Binding .}"/>
+                            </Grid.GestureRecognizers>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
         </StackLayout>
-    </ContentPage.Content>
+        
+        
+    </Grid>
 </ContentPage>

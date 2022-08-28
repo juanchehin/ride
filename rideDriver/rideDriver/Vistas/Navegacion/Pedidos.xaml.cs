@@ -1,4 +1,5 @@
-﻿using System;
+﻿using rideDriver.VistaModelo;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,7 @@ namespace rideDriver.Vistas.Navegacion
         public Pedidos()
         {
             InitializeComponent();
+            BindingContext=new VMpedidos(Navigation);
         }
     }
 }
