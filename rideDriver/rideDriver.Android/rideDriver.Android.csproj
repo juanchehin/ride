@@ -1,14 +1,14 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{40D0D279-02DB-4542-A864-51DA60D15C02}</ProjectGuid>
+    <ProjectGuid>{6D163882-30F8-43E8-9381-1F21C68E0AEA}</ProjectGuid>
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TemplateGuid>{c9e5eea5-ca05-42a1-839b-61506e0a37df}</TemplateGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>ride_driver.Droid</RootNamespace>
-    <AssemblyName>ride-driver.Android</AssemblyName>
+    <RootNamespace>rideDriver.Droid</RootNamespace>
+    <AssemblyName>rideDriver.Android</AssemblyName>
     <Deterministic>True</Deterministic>
     <AndroidApplication>True</AndroidApplication>
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
@@ -87,10 +87,10 @@
     <Folder Include="Resources\drawable\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ride-driver\ride-driver.csproj">
-      <Project>{F31F5559-7F66-4150-8A4E-C49D7D92F42D}</Project>
-      <Name>ride-driver</Name>
+    <ProjectReference Include="..\rideDriver\rideDriver.csproj">
+      <Project>{88608512-AC89-471C-B664-FD49E7931081}</Project>
+      <Name>rideDriver</Name>
     </ProjectReference>
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
+ <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

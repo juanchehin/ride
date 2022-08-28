@@ -2,7 +2,7 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace ride_driver
+namespace rideDriver
 {
     public partial class App : Application
     {
