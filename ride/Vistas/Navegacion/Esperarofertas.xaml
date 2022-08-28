@@ -91,5 +91,6 @@
                 </Grid>
             </Grid>
         </StackLayout>
+        <navegacion:Listchoferes IsVisible="{Binding VisibleOfertas} "/>
     </Grid>
 </ContentPage>

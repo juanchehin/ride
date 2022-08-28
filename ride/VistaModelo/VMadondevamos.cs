@@ -49,7 +49,11 @@ namespace ride.VistaModelo
           EnabledTxtdestino=false;
           Selectorigen=false;
           Selectdestino=false;
+      VisibleListdirec=false;
           Fijarenmapa=false;
+      VisibleOfertar=false;
+      Txtbuscador="";
+      PinActual();
         }
 
         #endregion
@@ -280,49 +284,70 @@ namespace ride.VistaModelo
             Fijarenmapa = false;
       Txtbuscador="";
         }
-    private async void Insertarpedido()
-      {
-
-            var Coororigen = ltOrigen.ToString().Replace(",",".") + "," + lgOrigen.ToString().Replace(",", ".");
-            var Coordestino = ltDestino.ToString().Replace(",", ".") + "," + lgDestino.ToString().Replace(",", ".");
-      //var Coororigen = "-12.042987,-77.053570";
-      //var Coordestino = "-12.058177,-76.997125";
-      ParametrosMatrix=await _googleMapsApi.Calculardistanciatiempo(Coororigen,Coordestino);
-       var funcion = new Dpedidos();
-      var parametros = new Mpedidos();
-      parametros.origen_lugar=Txtorigen;
-      parametros.destino_lugar=Txtdestino;
-      parametros.idchofer="Modelo";
-      parametros.iduser="Modelo";
-      parametros.lt_lg_origen=Coororigen;
-      parametros.lt_lg_destino=Coordestino;
-      parametros.estado="PENDIENTE";
-
-            if (ParametrosMatrix.Rows[0].Elements[0].duration == null)
+        private async void Insertarpedido()
+        {
+            if (!string.IsNullOrWhiteSpace(Txtorigen) && Txtorigen != "Tu ubicación")
             {
-                parametros.tiempo = "0";
+                if (!string.IsNullOrWhiteSpace(Txtdestino))
+                {
+                    if (!string.IsNullOrWhiteSpace(Txttarifa))
+                    {
+                        var Coororigen = ltOrigen.ToString().Replace(",", ".") + "," + lgOrigen.ToString().Replace(",", ".");
+                        var Coordestino = ltDestino.ToString().Replace(",", ".") + "," + lgDestino.ToString().Replace(",", ".");
+                        //var Coororigen = "-12.042987,-77.053570";
+                        //var Coordestino = "-12.058177,-76.997125";
+                        ParametrosMatrix = await _googleMapsApi.Calculardistanciatiempo(Coororigen, Coordestino);
+                        var funcion = new Dpedidos();
+                        var parametros = new Mpedidos();
+                        parametros.origen_lugar = Txtorigen;
+                        parametros.destino_lugar = Txtdestino;
+                        parametros.idchofer = "Modelo";
+                        parametros.iduser = "Modelo";
+                        parametros.lt_lg_origen = Coororigen;
+                        parametros.lt_lg_destino = Coordestino;
+                        parametros.estado = "PENDIENTE";
+
+                        if (ParametrosMatrix.Rows[0].Elements[0].duration == null)
+                        {
+                            parametros.tiempo = "0";
+                        }
+                        else
+                        {
+                            parametros.tiempo = ParametrosMatrix.Rows[0].Elements[0].duration.text;
+                        }
+
+                        parametros.tarifa = Txttarifa;
+
+                        if (ParametrosMatrix.Rows[0].Elements[0].distance == null)
+                        {
+                            parametros.distancia = "0";
+                        }
+                        else
+                        {
+                            parametros.distancia = ParametrosMatrix.Rows[0].Elements[0].distance.value.ToString();
+                        }
+
+                        await funcion.Insertarpedidos(parametros);
+
+                        await Navigation.PushAsync(new Esperarofertas());
+
+                    }
+                    else
+                    {
+                        await DisplayAlert("Faltan datos", "Ingrese una tarifa", "OK");
+                    }
+                }
+                else
+                {
+                    await DisplayAlert("Faltan datos", "Seleccione un destino", "OK");
+                }
             }
             else
             {
-                parametros.tiempo = ParametrosMatrix.Rows[0].Elements[0].duration.text;
+                await DisplayAlert("Faltan datos", "Seleccione un origen", "OK");
             }
-
-      parametros.tarifa=Txttarifa;
-
-            if (ParametrosMatrix.Rows[0].Elements[0].distance == null)
-            {
-                parametros.distancia = "0";
-            }
-            else
-            {
-                parametros.distancia = ParametrosMatrix.Rows[0].Elements[0].distance.value.ToString();
-            }
-            
-      await funcion.Insertarpedidos(parametros);
-
-            await Navigation.PushAsync(new Esperarofertas());
-
         }
+
     private void Volverdebuscar()
     {
         VisibleListdirec=false;

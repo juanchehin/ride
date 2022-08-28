@@ -17,6 +17,7 @@ namespace ride.Datos
     public ObservableCollection<Mofertasdeconduct> Listaofertas()
       {
       var data= new ObservableCollection<Mofertasdeconduct>();
+
       var collection = Constantes.firebase
         .Child("Ofertasdeconduct")
         .AsObservable<Mofertasdeconduct>()
@@ -39,6 +40,7 @@ namespace ride.Datos
         });
       return data;
       }
+
     public async Task Eliminaroferta(Mofertasdeconduct parametros)
       {
       var data= (await Constantes.firebase
