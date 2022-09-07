@@ -1,7 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json.Linq;
 
-namespace ride.Modelo
+namespace rideDriver.Modelo
 {
     public class GooglePlace
     {

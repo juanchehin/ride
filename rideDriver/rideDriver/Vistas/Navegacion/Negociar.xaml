@@ -1,12 +1,75 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="rideDriver.Vistas.Navegacion.Negociar">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+             x:Class="rideDriver.Vistas.Navegacion.Negociar"
+             xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
+             xmlns:sombras="clr-namespace:Sharpnado.Shades;assembly=Sharpnado.Shadows"
+             NavigationPage.HasNavigationBar="False"
+             xmlns:vistas="clr-namespace:rideDriver.Vistas.Reutilizables"
+             xmlns:vistasN="clr-namespace:rideDriver.Vistas.Navegacion">
+    <Grid Padding="20"
+          RowDefinitions="*,auto">
+        <sombras:Shadows CornerRadius="20"
+                         Shades="{sombras:SingleShade Offset='0,5' ,Opacity=0.39, Color=#6B41CD,BlurRadius=30}"
+                        >
+            <Frame CornerRadius="20"
+                   HasShadow="False"
+                   Padding="0"
+                   Margin="0,0,0,10">
+                <maps:Map x:Name="mapa" />
+            </Frame>
+        </sombras:Shadows>
+        <StackLayout 
+                     Grid.Row="1">
+            
+            
+            <Button Text="{Binding parametrosRecibe.tarifa,StringFormat='Aceptar por: S/.{0}'}"
+                    CornerRadius="10"
+                    FontAttributes="Bold"
+                    TextTransform="None"
+                    TextColor="White"
+                    BackgroundColor="#6B41CD"
+                    FontSize="Title">
+                <Button.Background>
+                    <LinearGradientBrush>
+                        <GradientStop Color="#6B41CD"
+                                      Offset="0.5" />
+                        <GradientStop Color="#AC52ED"
+                                      Offset="1.0" />
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+            <Label Text="Ofrezca su tarifa"
+                   HorizontalOptions="Center"
+                   FontSize="18"
+                   Margin="0,8" />
+            <StackLayout Orientation="Horizontal">
+                <Button Text="-0.5"
+                        CornerRadius="10"
+                        BackgroundColor="#C9B3F7"
+                        FontAttributes="Bold"
+                        IsEnabled="{Binding  parametrosRecibe.EstadobtnDism}"
+                        Command="{Binding Disminuirtarifacommand}" />
+                <Button Text="{Binding parametrosRecibe.TarifaTextbtn,StringFormat='S/.{0}'}"
+                        CornerRadius="10"
+                        BackgroundColor="#6B41CD"
+                        FontAttributes="Bold"
+                        TextColor="White"
+                        HorizontalOptions="CenterAndExpand"
+                        FontSize="Title"
+                        Command="{Binding Aceptarcommand}" />
+                <Button Text="+0.5"
+                        CornerRadius="10"
+                        BackgroundColor="#C9B3F7"
+                        FontAttributes="Bold"
+                        Command="{Binding Aumentartarifacommand}" />
+            </StackLayout>
+            <Button Text="Cerrar"
+                    TextTransform="None"
+                    FontAttributes="Bold"
+                    BackgroundColor="Transparent"
+                    FontSize="Title"
+                    Opacity="0.6" />
         </StackLayout>
-    </ContentPage.Content>
+    </Grid>
 </ContentPage>

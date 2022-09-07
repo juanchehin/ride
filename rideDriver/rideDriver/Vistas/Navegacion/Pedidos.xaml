@@ -76,7 +76,7 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
         </StackLayout>
-        
-        
+  <vistas:Ofreciendotarifa IsVisible="{Binding VisibleOfertas}"/>
+  <vistas:Navegar IsVisible="{Binding VisibleNavegar}"/>
     </Grid>
 </ContentPage>

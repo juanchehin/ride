@@ -12,15 +12,23 @@
 
   <ItemGroup>
     <PackageReference Include="FirebaseDatabase.net" Version="4.1.0" />
+    <PackageReference Include="Sharpnado.Shadows" Version="1.2.1" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2515" />
     <PackageReference Include="Xamarin.Essentials" Version="1.7.3" />
+    <PackageReference Include="Xamarin.Forms.GoogleMaps" Version="5.0.0-BETA1" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Update="Vistas\Navegacion\Negociar.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Vistas\Navegacion\Ofreciendotarifa.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Vistas\Navegacion\Pedidos.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Vistas\Reutilizables\Tarjetacliente.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

@@ -4,7 +4,7 @@ using System.Text;
 
 using Newtonsoft.Json;
 
-namespace ride.Modelo {
+namespace rideDriver.Modelo {
     public class GeocodedWaypoint {
         [JsonProperty("geocoder_status")]
         public string GeocoderStatus { get; set; }

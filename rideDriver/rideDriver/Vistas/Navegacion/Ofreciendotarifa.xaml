@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="rideDriver.Vistas.Navegacion.Ofreciendotarifa">
+    <Grid>
+        <BoxView BackgroundColor="#5D1CE7"
+                 Opacity="0.5" />
+        <StackLayout VerticalOptions="Center">
+            <Label Text="Ofreciendo su tarifa PEN 25,  espere la respuesta"
+                   FontAttributes="Bold"
+                   TextColor="White"
+                   HorizontalOptions="Center"
+                   FontSize="23"
+                   WidthRequest="300"
+                   HorizontalTextAlignment="Center"/>
+            <Grid Margin="0,18">
+                <Frame HeightRequest="60"
+                       WidthRequest="60"
+                       HorizontalOptions="Center"
+                       CornerRadius="30"
+                       Padding="0">
+                     <Image Source="https://i.ibb.co/G55wSCV/Karol-G-sencillo-Provenza-02.jpg"
+                       Aspect="AspectFill"/>
+                </Frame>
+                <Frame HeightRequest="60"
+                       WidthRequest="60"
+                       HorizontalOptions="Center"
+                       CornerRadius="30"
+                       Padding="0"
+                       TranslationX="30">
+                    <Image Source="https://i.ibb.co/w0PJPKx/dread-mar-i.jpg"
+                           Aspect="AspectFill" />
+                </Frame>
+            </Grid>
+            <Label Text="5 conductores más han ofrecido sus precios"
+                   HorizontalOptions="Center"
+                   TextColor="White"
+                   FontSize="23"
+                   FontAttributes="Bold"
+                  WidthRequest="250"
+                   HorizontalTextAlignment="Center"/>
+        </StackLayout>
+        <Frame  VerticalOptions="End"
+                Margin="15"
+                CornerRadius="15"
+                HasShadow="False">
+            <Grid ColumnDefinitions="auto,*"
+                  RowDefinitions="*,auto"
+                  BackgroundColor="White">
+                <StackLayout>
+                    <Frame Padding="0"
+                           WidthRequest="60"
+                           HeightRequest="60"
+                           CornerRadius="30"
+                           HasShadow="False">
+                        <Image Source="https://i.ibb.co/k2kRbPY/bino.png"
+                               Aspect="AspectFill" />
+                    </Frame>
+                    <Label Text="Nombre"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center" />
+                    <Label Text="4 min"
+                           HorizontalOptions="Center"
+                           TextColor="#a9a9a8" />
+                </StackLayout>
+                <StackLayout Grid.Column="1">
+                    <Label Text="{Binding origen_lugar}"
+                           FontAttributes="Bold"
+                           TextColor="Black"
+                           FontSize="20" />
+                    <Label Text="{Binding destino_lugar}"
+                           FontSize="17" />
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="{Binding tarifa}"
+                               FontAttributes="Bold"
+                               FontSize="Title"
+                               TextColor="#ff3002" />
+                        <Label Text="250 m"
+                               VerticalOptions="Center"
+                               FontAttributes="Bold" />
+                        <Frame Padding="10,5"
+                               CornerRadius="10"
+                               HasShadow="False"
+                               BackgroundColor="#CEFEF0">
+                            <Label Text="Efectivo"
+                                   VerticalOptions="Center"
+                                   FontAttributes="Bold"
+                                   TextColor="#00de87" />
+                        </Frame>
+                    </StackLayout>
+                </StackLayout>
+                <BoxView Grid.Row="1"
+                         Grid.ColumnSpan="2"
+                         CornerRadius="10"
+                         HeightRequest="2"
+                         Opacity="0.5"
+                         BackgroundColor="#E0E4E2"
+                         Margin="0,0,0,10" />
+            </Grid>
+        </Frame>
+    </Grid>
+</ContentView>

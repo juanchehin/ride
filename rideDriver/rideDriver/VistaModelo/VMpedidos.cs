@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 // using Plugin.ExternalMaps;
@@ -157,7 +155,7 @@ namespace rideDriver.VistaModelo
             lg = lg.Replace(".", ",");
             var ltdouble = Convert.ToDouble(lt);
             var lgdouble = Convert.ToDouble(lg);
-            //await CrossExternalMaps.Current.NavigateTo("Navegar", ltdouble, lgdouble);
+            // await CrossExternalMaps.Current.NavigateTo("Navegar",ltdouble,lgdouble);
 
         }
     #endregion

@@ -1,4 +1,5 @@
 ﻿using rideDriver.Modelo;
+using rideDriver.VistaModelo;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,7 @@ namespace rideDriver.Vistas.Navegacion
     public Negociar(Mpedidos parametros)
       {
       InitializeComponent();
-      //BindingContext=new VMnegociar(Navigation,mapa,parametros);
+      BindingContext=new VMnegociar(Navigation,mapa,parametros);
       }
     }
 }

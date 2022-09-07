@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace ride.Modelo
+namespace rideDriver.Modelo
 {
     public class GooglePlaceAutoCompletePrediction
     {
